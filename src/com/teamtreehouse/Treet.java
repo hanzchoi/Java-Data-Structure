@@ -30,4 +30,10 @@ public class Treet {
         return mCreationDate;
     }
 
+    //[^\\w#@']+ this is the regex expression to us the split method for java
+    public String[] getWords(){
+        return mDescription.toLowerCase().split("[^\\w#@']+");
+    }
+
 }
+
