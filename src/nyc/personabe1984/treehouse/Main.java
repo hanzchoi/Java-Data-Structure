@@ -30,5 +30,8 @@ public class Main {
 
         Treet[] treets = {treet, secondTreet};
         Arrays.sort(treets);
+        for(Treet exampleTreet: treets){
+            System.out.println(exampleTreet);
+        }
     }
 }

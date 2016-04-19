@@ -2,7 +2,7 @@ package com.teamtreehouse;
 
 import java.util.Date;
 
-public class Treet {
+public class Treet implements Comparable{
     private String mAuthor;
     private String mDescription;
     private Date   mCreationDate;
@@ -15,7 +15,8 @@ public class Treet {
 
     @Override
     public String toString(){
-        return "Treet: \"" + mDescription + "\" - @" + mAuthor ;
+        return String.format("Treet: \"%s\" by %s on %s" ,
+                mDescription, mAuthor, mCreationDate);
     }
 
     public String getAuthor(){
@@ -35,5 +36,22 @@ public class Treet {
         return mDescription.toLowerCase().split("[^\\w#@']+");
     }
 
+    @Override
+    public int compareTo(Object obj) {
+        Treet other = (Treet) obj;
+        // All object had the equal method and so if they are the same object return 0 right away
+        if(equals(other)){
+            return 0;
+        }
+
+        int dateCmp = mCreationDate.compareTo(other.mCreationDate);
+
+        // In case if the tweet is created on the same date then check the description to make sure they are the same
+        if(dateCmp == 0){
+            return mCreationDate.compareTo(other.mCreationDate);
+        }
+
+        return dateCmp;
+    }
 }
 
