@@ -1,8 +1,10 @@
 package com.teamtreehouse;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Treet implements Comparable{
+public class Treet implements Comparable, Serializable{
+    private static final long serialVersionUID = 1L;
     private String mAuthor;
     private String mDescription;
     private Date   mCreationDate;

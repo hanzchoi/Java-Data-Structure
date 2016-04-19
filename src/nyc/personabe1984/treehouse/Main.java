@@ -1,6 +1,7 @@
 package nyc.personabe1984.treehouse;
 
 import com.teamtreehouse.Treet;
+import com.teamtreehouse.Treets;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -32,6 +33,13 @@ public class Main {
         Arrays.sort(treets);
         for(Treet exampleTreet: treets){
             System.out.println(exampleTreet);
+        }
+
+        Treets.save(treets);
+        Treet[] reloadedTreets = Treets.load();
+
+        for(Treet reloaded : reloadedTreets){
+            System.out.println(reloaded);
         }
     }
 }
