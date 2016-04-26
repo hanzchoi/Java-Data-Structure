@@ -1,9 +1,12 @@
 package com.teamtreehouse;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
-public class Treet implements Comparable, Serializable{
+public class Treet implements Comparable<Treet>, Serializable{
     private static final long serialVersionUID = 1L;
     private String mAuthor;
     private String mDescription;
@@ -34,13 +37,31 @@ public class Treet implements Comparable, Serializable{
     }
 
     //[^\\w#@']+ this is the regex expression to us the split method for java
-    public String[] getWords(){
-        return mDescription.toLowerCase().split("[^\\w#@']+");
+    public List<String> getWords(){
+        String[] words = mDescription.toLowerCase().split("[^\\w#@']+");
+        return Arrays.asList(words);
+    }
+
+    public List<String> getHashTags(){
+        return getWrodsPrefixedWith("#");
+    }
+
+    public List<String> getMentions(){
+        return getWrodsPrefixedWith("@");
+    }
+
+    private List<String> getWrodsPrefixedWith(String prefix){
+        List<String> results = new ArrayList<>();
+        for(String word : getWords()){
+            if(word.startsWith(prefix)){
+                results.add(word);
+            }
+        }
+        return results;
     }
 
     @Override
-    public int compareTo(Object obj) {
-        Treet other = (Treet) obj;
+    public int compareTo(Treet other) {
         // All object had the equal method and so if they are the same object return 0 right away
         if(equals(other)){
             return 0;
