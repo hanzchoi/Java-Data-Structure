@@ -1,4 +1,4 @@
-package model;
+package treehouse.model;
 
 public class Song {
     private String mArtist, mTitle, mVideoUrl;
