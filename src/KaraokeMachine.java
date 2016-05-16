@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import treehouse.model.Song;
@@ -73,4 +74,17 @@ public class KaraokeMachine {
 
         return new Song(artist, title, videoUrl);
     }
+
+    private int promptForIndex(List<String> options)throws IOException{
+        int counter = 1;
+        for(String option : options){
+            System.out.printf("%d.)  %s %n", counter, option);
+            counter++;
+        }
+        String optionAsString = mReader.readLine();
+        int choice = Integer.parseInt(optionAsString.trim());
+        System.out.print("Your choice:  ");
+        return choice - 1;
+    }
+
 }
