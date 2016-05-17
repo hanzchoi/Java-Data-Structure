@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class KaraokeMachine {
         mReader = new BufferedReader(new InputStreamReader(System.in));
         mMenu = new HashMap<>();
         mMenu.put("add", "Add a new song to the song book");
+        mMenu.put("choose", "Chosse a song to sing! ");
         mMenu.put("quit", "Give up. Exit the program");
     }
 
@@ -33,6 +35,12 @@ public class KaraokeMachine {
                         Song song = promptNewSong();
                         mSongBook.addSong(song);
                         System.out.printf("%s added! %n%n", song);
+                        break;
+                    case "choose":
+                        String artist = promptArtist();
+                        Song artistSong = promptSongForArtist(artist);
+                        // TODO: add to a song queue
+                        System.out.printf("You chose: %s %n ", artistSong);
                         break;
                     case "quit":
                         System.out.println("Thanks for playing!");
@@ -73,6 +81,23 @@ public class KaraokeMachine {
         String videoUrl = mReader.readLine();
 
         return new Song(artist, title, videoUrl);
+    }
+
+    private String promptArtist() throws IOException{
+        System.out.println("Available artists:");
+        List<String> artists = new ArrayList<>(mSongBook.getArtists());
+        int index = promptForIndex(artists);
+        return artists.get(index);
+    }
+
+    private Song promptSongForArtist(String artist) throws IOException{
+        List<Song> songs = mSongBook.getSongsForArtist(artist);
+        List<String> songTitles = new ArrayList<>();
+        for(Song song : songs){
+            songTitles.add(song.getTitle());
+        }
+        int index = promptForIndex(songTitles);
+        return songs.get(index);
     }
 
     private int promptForIndex(List<String> options)throws IOException{
