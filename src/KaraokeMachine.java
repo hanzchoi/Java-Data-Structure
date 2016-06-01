@@ -1,3 +1,6 @@
+import treehouse.model.Song;
+import treehouse.model.SongBook;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,9 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import treehouse.model.Song;
-import treehouse.model.SongBook;
 
 public class KaraokeMachine {
     private SongBook mSongBook;
@@ -19,7 +19,7 @@ public class KaraokeMachine {
         mReader = new BufferedReader(new InputStreamReader(System.in));
         mMenu = new HashMap<>();
         mMenu.put("add", "Add a new song to the song book");
-        mMenu.put("choose", "Chosse a song to sing! ");
+        mMenu.put("choose", "Choose a song to sing! ");
         mMenu.put("quit", "Give up. Exit the program");
     }
 
