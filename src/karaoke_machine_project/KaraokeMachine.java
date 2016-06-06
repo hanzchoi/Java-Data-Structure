@@ -1,5 +1,7 @@
-import treehouse.model.Song;
-import treehouse.model.SongBook;
+package karaoke_machine_project;
+
+import karaoke_machine_project.model.Song;
+import karaoke_machine_project.model.SongBook;
 
 import java.io.BufferedReader;
 import java.io.IOException;

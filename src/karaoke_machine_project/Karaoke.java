@@ -1,4 +1,6 @@
-import treehouse.model.SongBook;
+package karaoke_machine_project;
+
+import karaoke_machine_project.model.SongBook;
 
 public class Karaoke {
 
